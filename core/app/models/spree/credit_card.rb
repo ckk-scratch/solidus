@@ -13,6 +13,15 @@ module Spree
                     :imported,
                     :verification_value
 
+    # Returns or sets the track data for the card
+    # ActiveMerchant::Billing::CreditCard added this accessor used by some gateways.
+    # More info: https://github.com/spree/spree/issues/6209
+    #
+    # Returns or sets the track data for the card
+    #
+    # @return [String]
+    attr_accessor :track_data
+
     validates :month, :year, numericality: { only_integer: true }, if: :require_card_numbers?, on: :create
     validates :number, presence: true, if: :require_card_numbers?, on: :create, unless: :imported
     validates :name, presence: true, if: :require_card_numbers?, on: :create
